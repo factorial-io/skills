@@ -10,7 +10,43 @@ Skills are structured instruction sets that teach AI coding assistants (like Cla
 
 | Skill | Description |
 |-------|-------------|
+| **jujutsu** | Use `jj` (Jujutsu) instead of `git` for version control. Provides a simpler mental model and powerful history editing with Git compatibility. |
 | **phabalicious** | DevOps and deployment workflows using Phabalicious (phab) CLI. Covers environment management, data synchronization, backups, and safe deployment practices. |
+| **security-audit** | Systematic methodology for security reviews with severity assessment, dual documentation (client + internal), and acceptance-focused ticket creation. |
+
+## Installation
+
+Install skills from this collection using the `skills` CLI:
+
+```bash
+# Install to your project (interactive - choose skills and agents)
+npx skills add factorial-io/skills
+
+# Install globally (user-level, available across all projects)
+npx skills add factorial-io/skills --global
+
+# Install a specific skill
+npx skills add factorial-io/skills --skill phabalicious
+
+# Install to a specific agent (opencode, claude-code, cline, codex, cursor, etc.)
+npx skills add factorial-io/skills --agent claude-code
+
+# List available skills without installing
+npx skills add factorial-io/skills --list
+
+# Install all skills to all agents without prompts
+npx skills add factorial-io/skills --all
+```
+
+### Keeping Skills Updated
+
+```bash
+# Check for available updates
+npx skills check
+
+# Update all installed skills
+npx skills update
+```
 
 ## Usage
 
