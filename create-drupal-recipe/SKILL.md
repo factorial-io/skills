@@ -103,3 +103,68 @@ There is no need for separate export/import steps per language.
 - **No `default_content` at runtime**: If you used Drush's `dcer` command for exporting, you only need `default_content` as a dev dependency. The core import mechanism handles the rest.
 - **File assets**: When exporting with `--with-dependencies`, file entities and their physical files are included in the export. They get placed in a `file/` subdirectory under `content/`.
 - **Entity references**: Cross-references between content entities (e.g., a node referencing taxonomy terms) are resolved by UUID during import, so export order doesn't matter.
+
+## Canvas Module Workaround
+
+Sites using the **Canvas** page builder module require special handling for recipe content imports. Canvas overrides entity reference field types (`EntityReferenceItemOverride`) and expects UUID strings, but core's exporter outputs integer values for user references (uid 0 and 1).
+
+### The Problem
+
+Core's `Exporter` uses `array_map('intval')` for user 0/1 references, producing:
+
+```yaml
+content_translation_uid:
+  -
+    target_id: 1
+    target_uuid: 0
+```
+
+Canvas's `EntityReferenceItemOverride::getTargetId()` receives the integer `0` for `target_uuid` but expects a string, causing a `TypeError` during recipe import.
+
+### The Fix
+
+After exporting content with `content:export`, strip the following non-essential fields from both `default` and `translations` sections in every content YAML file:
+
+- `content_translation_uid` — causes the Canvas TypeError
+- `content_translation_source` — not needed for import
+- `content_translation_outdated` — not needed for import
+- `revision_translation_affected` — auto-computed on save
+- `path` — only needed if you want specific aliases
+
+A minimal content YAML for a translatable taxonomy term looks like:
+
+```yaml
+_meta:
+  version: '1.0'
+  entity_type: taxonomy_term
+  uuid: 386059fa-39bb-4fa4-ae79-1b204a6d55c6
+  bundle: location
+  default_langcode: en
+default:
+  status:
+    -
+      value: true
+  name:
+    -
+      value: Ingelheim
+  weight:
+    -
+      value: 0
+translations:
+  de:
+    status:
+      -
+        value: true
+    name:
+      -
+        value: Ingelheim
+    weight:
+      -
+        value: 0
+```
+
+This also applies to nodes and other content entities — always strip `content_translation_uid` when Canvas is installed.
+
+## Alternative Approaches
+
+If core's content API doesn't fit your needs (e.g., you're on Drupal < 11.3), see `references/alternatives.md` for fallback strategies using custom install hooks or migrations.
