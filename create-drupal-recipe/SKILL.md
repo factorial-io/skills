@@ -103,7 +103,3 @@ There is no need for separate export/import steps per language.
 - **No `default_content` at runtime**: If you used Drush's `dcer` command for exporting, you only need `default_content` as a dev dependency. The core import mechanism handles the rest.
 - **File assets**: When exporting with `--with-dependencies`, file entities and their physical files are included in the export. They get placed in a `file/` subdirectory under `content/`.
 - **Entity references**: Cross-references between content entities (e.g., a node referencing taxonomy terms) are resolved by UUID during import, so export order doesn't matter.
-
-## Alternative Approaches
-
-If core's content API doesn't fit your needs (e.g., you're on Drupal < 11.3), see `references/alternatives.md` for fallback strategies using custom install hooks or migrations.
