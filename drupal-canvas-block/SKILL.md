@@ -47,7 +47,7 @@ Block Template (Twig)
 SDC Components (individual item display)
 ```
 
-**Example:** Profession node → field_facts (paragraphs) → Facts Block → Fact Component
+**Example:** Article node → field_sections (paragraphs) → Sections Block → Section Component
 
 ## Step-by-Step Implementation
 
@@ -730,11 +730,14 @@ public function getCacheTags(): array {
 - **Test in both contexts** - Canvas editor AND live page
 - **Follow Drupal standards** - PSR-4, dependency injection, coding standards
 
-## Example: Real-World Implementation
+## Summary
 
-See the MZBI Profession Facts Block implementation for a complete working example:
-- `web/modules/custom/mzbi_blocks/src/Plugin/Block/ProfessionFactsBlock.php`
-- Displays fact paragraphs from profession nodes
-- Works in both Canvas and live pages
-- Proper cache invalidation
-- Clean, maintainable code
+This pattern enables you to display paragraph data in Canvas 1.1 despite its lack of native paragraph support. By creating custom blocks that retrieve and render paragraph data, you can build rich, flexible Canvas templates while maintaining clean content architecture.
+
+**Key takeaways:**
+- Custom blocks bridge paragraphs to Canvas templates
+- Keep block configuration minimal for Canvas compatibility
+- Use entity fields for dynamic data, not block configuration
+- Always include comprehensive cache tags
+- Provide helpful Canvas preview messages
+- Follow Drupal coding standards and dependency injection
