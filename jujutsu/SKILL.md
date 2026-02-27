@@ -286,6 +286,17 @@ When colocated:
 - `jj git push` pushes via git
 - git commands still work if needed for edge cases
 
+## Avoiding Interactive Editors
+
+  jj commands like `squash`, `describe`, `commit`, and `split` open an interactive editor by default when combining or editing commit messages. Since LLMs
+  cannot interact with editors:
+
+  - **Always pass `-m "message"`** to provide the commit message inline
+  - `jj squash -m "message"` — squash without opening editor
+  - `jj squash --into <rev> -m "message"` — squash into target without editor
+  - `jj describe -m "message"` — set description without editor
+  - Never use `jj split` (requires interactive selection)
+
 ## Command Quick Reference
 
 | Action | Command |
@@ -296,7 +307,7 @@ When colocated:
 | Describe commit | `jj desc -m "message"` |
 | New commit | `jj new` |
 | Edit old commit | `jj edit <rev>` |
-| Squash into parent | `jj squash` |
+| Squash into parent | `jj squash -m <message>` |
 | Rebase | `jj rebase -d <dest>` |
 | Create bookmark | `jj bookmark create <name>` |
 | Fetch | `jj git fetch` |
