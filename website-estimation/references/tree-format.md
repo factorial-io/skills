@@ -19,19 +19,28 @@ This document defines the exact output format for the importable estimation tree
 # Project Name — Estimation Type
 Reference value: Xd (description of reference task)
 [Additional context: technical approach, who delivers UX/UI, etc.]
-Assumptions:
-- Assumption 1
-- Assumption 2
-- Epic Name
+Epics:
+- Epic Name - Epic Desctiption
   - Feature Name - Short description of what this delivers
     - FE: Xd
     - BE: Yd
   - Another Feature - Description
     - FE: Xd
-- Another Epic
+- Another Epic - Another Epid description
   - Feature - Description
     - BE: Xd
 ```
+
+Supported department shortcuts:
+- BE: Backend
+- FE: Frontend
+- PM: Project Management
+- PO: Product Ownership
+- UI: UI Design
+- UX: UX Design
+- MGMT: Management
+- CONS: Consulting
+- QA: Quality Assurance
 
 ## Example
 
@@ -40,10 +49,7 @@ Assumptions:
 Reference value: 0.5d (simplest component per discipline)
 Technical approach: Drupal 11 with Canvas, SDC components.
 UX/UI delivered by client agency.
-Assumptions:
-- Search: Standard CMS search, no external service
-- Multilingual: DE/EN via CMS i18n
-- Hosting: Managed hosting, recommendation included
+Epics:
 - Infrastruktur & Setup
   - CMS Setup & Configuration - Installation, managed hosting, CI/CD, staging/production
     - FE: 1.5d
