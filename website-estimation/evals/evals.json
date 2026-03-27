@@ -1,0 +1,48 @@
+{
+  "skill_name": "website-estimation",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Ich muss eine Schätzung für einen Website-Relaunch machen. Der Kunde ist eine mittelständische Firma mit ca. 30 Seiten, einem Blog, einer Produktübersicht mit Filterung, und einem Kontaktformular. Die nutzen aktuell WordPress, wir würden auf Drupal 11 mit Canvas migrieren. UX/UI kommt von einer externen Agentur. Wir brauchen DE/EN, WCAG 2.1 AA, und einen geschützten Downloadbereich mit Login. Kannst du mir helfen, das zu strukturieren?",
+      "expected_output": "A structured estimation tree with epics (Infrastruktur, Komponenten, Forms, Content Types, Auth, Migration, Standards), component catalog with complexity ratings, FE/BE split, relative estimation with a reference value, and identified open questions.",
+      "files": [],
+      "expectations": [
+        "Output contains a hierarchical estimation with epics and features",
+        "Uses relative estimation with a clearly stated reference value",
+        "Splits effort into FE and BE disciplines",
+        "Groups components by complexity (simple/medium/complex or einfach/mittel/komplex)",
+        "Includes a section for authentication / protected areas",
+        "Identifies open questions or assumptions",
+        "Follows the tree format: no numbering, no bold, dash separator"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Hier sind 12 Wireframe-JPGs für eine neue Karriereseite. Bitte analysiere die Designs und erstelle einen Komponentenkatalog mit Komplexitätsbewertung. Danach möchte ich daraus eine Schätzung ableiten. Die Seite wird mit Next.js und einem Headless CMS gebaut.",
+      "expected_output": "A component catalog extracted from the wireframes with IDs, names, complexity ratings, and a subsequent estimation tree adapted for a headless/Next.js architecture where there is no traditional BE-per-component pattern.",
+      "files": [],
+      "expectations": [
+        "Analyzes provided wireframes/images systematically",
+        "Creates a component catalog with unique IDs and descriptive names",
+        "Rates each component's complexity with justification",
+        "Adapts estimation to headless architecture (API layer, frontend components)",
+        "Produces an estimation tree following the standard format",
+        "Asks clarifying questions about unknowns before finalizing"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Ich habe eine fertige Schätzung als Markdown-Datei. Der Kunde hat jetzt auf unsere offenen Fragen geantwortet: Die Suche soll doch mit Algolia statt mit der Standard-Suche gemacht werden, und es kommt ein neues Portal für Händler dazu (Login + Registrierung + geschützter Produktkatalog). Bitte aktualisiere die Schätzung und zeig mir das Delta.",
+      "expected_output": "Updated estimation tree with Algolia integration replacing standard search (higher effort), new dealer portal with auth flow added, clear delta showing what changed and by how much (days added/removed).",
+      "files": [],
+      "expectations": [
+        "Reads and understands the existing estimation file",
+        "Adds Algolia integration with appropriate FE and BE effort",
+        "Adds dealer portal with login, registration, and protected catalog",
+        "Updates the authentication section to include the new portal",
+        "Presents a clear delta (before vs. after totals)",
+        "Updates assumptions in the document header"
+      ]
+    }
+  ]
+}
